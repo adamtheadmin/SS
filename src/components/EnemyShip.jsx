@@ -16,7 +16,7 @@ class EnemyShip extends OSO{
 			class : ['enemy', 'ship']
 		})
 		this.props = props
-		this.hp = 3;
+		this.hp = 1;
 		this.x = this.randomRange(0, state.get('windowWidth') - this.width)
 		//setTimeout(() => this.explode(), 3000)
 	}
@@ -24,7 +24,7 @@ class EnemyShip extends OSO{
 	hit(by){
 		if(by.class.indexOf("friendly") > -1 && by.class.indexOf("bullet") > -1){
 			this.hp--
-			if(this.hp <= 0)
+			if(!this.hp)
 				this.explodeAndDestroy()
 		}
 	}

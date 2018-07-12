@@ -13,7 +13,7 @@ class Waves extends React.Component{
 		this.intervals = []
 		this.startWave()
 		this.eCounter = 0;
-		state.on("destroyEnemy", id => {
+		state.on("destroyEnemy", this.destroyEnemyCallback = id => {
 			var search = this.enemies.filter(e => e.key == id)
 
 			if(search.length)
@@ -33,7 +33,8 @@ class Waves extends React.Component{
 	}
 
 	componentWillUnmount() {
-		this.clearInterval()
+		state.off("destroyEnemy", this.destroyEnemyCallback)
+		this.clearIntervals()
 	}
 
 	startWave(){
@@ -43,7 +44,7 @@ class Waves extends React.Component{
 					this.enemies.push(<EnemyShip key={this.eCounter} id={this.eCounter} />)
 					this.eCounter++
 					this.forceUpdate()
-				}, 2000))
+				}, 1000 * 3))
 			break;
 		}
 	}

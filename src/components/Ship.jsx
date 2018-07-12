@@ -14,7 +14,7 @@ class Ship extends OSO{
 			height : 110,
 			x : Math.floor(s.windowWidth / 2) - 50,
 			y : s.windowHeight + 20, 
-			z : 2,
+			z : 10,
 			image : "ship.png",
 			class : ["friendly", "ship"]
 		})

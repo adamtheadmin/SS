@@ -12,6 +12,7 @@ class Bullet extends OSO{
 			height : 30,
 			x : -1000,
 			y : -1000, 
+			z : 5,
 			image : props.up ? "bullet.png" : "bullet2.png",
 			class : props.up ? ['friendly', 'bullet'] : ['enemy' : 'bullet']
 		})
@@ -27,11 +28,12 @@ class Bullet extends OSO{
 	}
 
 	destroy(){
-		state.emit("destroyBullet", this.props.id)
+		state.emit("destroyBullet", this)
+		this.componentWillUnmount()
 	}
 
 	init(){
-		this.tween(this.x, this.props.up ? -100 : state.get('windowHeight') + 100, 1000)
+		this.tween(this.x, this.props.up ? -100 : state.get('windowHeight') + 100, 2000)
 			.then(_ => this.destroy())
 			.catch(e => {})
 	}

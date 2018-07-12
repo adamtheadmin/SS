@@ -10,18 +10,24 @@ class Bullets extends React.Component{
 		super()
 		this.bullets = []
 		this.tracker = 0;
-		state.on('sendBullet', details => {
+		this.state = state.getState()
+		state.on('sendBullet', this.sbh = details => {
 			this.bullets.push(<Bullet key={this.tracker} id={this.tracker} up={details.up} x={details.x} y={details.y} />)
 			this.tracker++
 			this.forceUpdate()
 		})
-		state.on('destroyBullet', key => {
-			var search = this.bullets.filter(b => b.props.key == key)
-			
-			if(search.length)
-				this.bullets.splice(this.bullets.indexOf(search[0]), 1)
+		state.on('destroyBullet', this.dbh = bullet => {
+			for(var x in this.bullets)
+				if(this.bullets[x] === bullet)
+					this.bullets.splice(x, 1)
+			//this.bullets.splice(this.bullets.indexOf(bullet), 1)
 			this.forceUpdate()
 		})
+	}
+
+	componentWillUnmount(){
+		state.off('sendBullet', this.sbh)
+		state.off('destroyBullet', this.dbh)
 	}
 
 	render(){
