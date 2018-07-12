@@ -1,0 +1,39 @@
+.game
+	position : fixed
+	top : 0px
+	left : 0px
+	width : 100%
+	height : 100%
+	background-color : #000
+	.window
+		position : relative
+		background : url('/images/stars.jpg')
+		animation: gameWindowAnimation 5s linear infinite;
+		margin : 5px auto
+		width : 900px
+		height : 900px
+		color : #FFF
+		//animation: colorBorder 2500ms linear infinite
+	.mask
+		position : fixed
+		background-color : #000
+		width : 100%
+		height : 300px
+		left : 0px
+		z-index : 5000
+.oso
+	position : absolute
+
+
+
+@keyframes gameWindowAnimation 
+    0% 
+    	border : 5px #8A2BE2 solid
+    	background-position: 0px -1024px
+    25%
+    	border : 5px #0000FF solid
+    75% 
+    	border : 5px #DC143C solid
+    100% 
+    	border : 5px #8A2BE2 solid
+    	background-position: 0px 0px

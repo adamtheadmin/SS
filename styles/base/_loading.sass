@@ -1,0 +1,31 @@
+.loading
+	position : fixed
+	top: 0px
+	left : 0px
+	width : 100%
+	height : 100%
+	background-color : #000
+	text-align : center
+	.circle
+		margin : auto
+		margin-top : 50px
+		animation: spin 2500ms linear infinite;
+		position : relative
+		// background-color : #000
+		border : #000 25px solid
+		border-top : #500 25px solid
+		border-radius : 200px
+		width : 100px
+		height : 100px
+		z-index : 500
+
+@keyframes spin 
+    0% 
+    	background-color : #100;
+    	transform: rotate(0deg); 
+    50%
+    	background-color : #500;
+    100% 
+    	background-color : #100;
+    	transform: rotate(360deg); 
+    
