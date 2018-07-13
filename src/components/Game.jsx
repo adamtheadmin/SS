@@ -8,6 +8,7 @@ import OSO from './OSO'
 import Ship from './Ship'
 import Bullets from './Bullets'
 import Waves from './Waves'
+import HUD from './HUD'
 
 class Game extends React.Component{
 	constructor(){
@@ -45,6 +46,7 @@ class Game extends React.Component{
 					width : `${this.state.windowWidth}px`,
 					height : `${this.state.windowHeight}px`,
 				}}>
+					{this.state.HUD ? <HUD /> : <span></span>}
 			    	<Ship />
 			    	<Waves />
 			    	<Bullets />

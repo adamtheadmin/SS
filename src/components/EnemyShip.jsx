@@ -24,8 +24,10 @@ class EnemyShip extends OSO{
 	hit(by){
 		if(by.class.indexOf("friendly") > -1 && by.class.indexOf("bullet") > -1){
 			this.hp--
-			if(!this.hp)
+			if(!this.hp){
 				this.explodeAndDestroy()
+				state.increment('kills')
+			}
 		}
 	}
 

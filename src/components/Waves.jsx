@@ -44,7 +44,7 @@ class Waves extends React.Component{
 					this.enemies.push(<EnemyShip key={this.eCounter} id={this.eCounter} />)
 					this.eCounter++
 					this.forceUpdate()
-				}, 1000 * 3))
+				}, 1000 * 1))
 			break;
 		}
 	}

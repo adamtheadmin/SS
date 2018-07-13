@@ -20,6 +20,8 @@ class Ship extends OSO{
 		})
 		this.ready = false
 		this.bank = null
+		state.set('health', 100)
+		state.set('kills', 0)
 		this.guns = [
 			{x : 24, y : 75},
 			{x : 50, y : 5},
@@ -59,6 +61,10 @@ class Ship extends OSO{
 				case 39: //Right
 					this.cancelBank()
 				break;
+
+				case 72: //H Key
+					state.toggle('HUD')
+				break;
 			}
 		}
 	}
@@ -74,9 +80,16 @@ class Ship extends OSO{
 		this.bank.catch(_ => {})
 	}
 
+	takeDamage(amount){
+		this.explode()
+		state.set('health', this.state.health - amount)
+		if(this.state.health <= 0)
+			this.explodeAndDestroy()
+	}
+
 	hit(by){
 		if(by.class.indexOf("enemy") > -1){
-			this.explode()
+			this.takeDamage(5)
 			by.explodeAndDestroy()
 		}
 	}
@@ -91,6 +104,16 @@ class Ship extends OSO{
 		this.gun++
 		if(!(this.gun in this.guns))
 			this.gun = 0
+	}
+
+	destroy(){
+		this.tween(this.x + 150, this.state.windowHeight + 250, 1000)
+			.then(_ => {
+				state.set('message', "GAME OVER")
+				setTimeout(() => {
+					state.toggle('inGame')
+				}, 1000 * 5)
+			})
 	}
 
 	init(){

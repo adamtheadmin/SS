@@ -1,0 +1,67 @@
+.HUD
+	.health
+		width : 30px
+		height : 150px
+		position : absolute
+		right : 0px
+		bottom : 3px
+		background: #2bd845
+		background: -moz-linear-gradient(top, #2bd845 0%, #cfd829 39%, #f23726 77%, #ff0a0a 100%)
+		background: -webkit-linear-gradient(top, #2bd845 0%,#cfd829 39%,#f23726 77%,#ff0a0a 100%)
+		background: linear-gradient(to bottom, #2bd845 0%,#cfd829 39%,#f23726 77%,#ff0a0a 100%)
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2bd845', endColorstr='#ff0a0a',GradientType=0 )
+		z-Index : 5000
+		.bar
+			background : #000
+	.information
+		width: 90px
+    	height: 30px
+		position : absolute
+		right : 30px
+		bottom : 1px
+		font-size : 9pt
+		font-family : monospace
+		color : #1F1
+		background : rgba(0, 0, 0, .9)
+		z-Index : 5000
+
+@keyframes colorBorder 
+    0% 
+    	border : 5px #8A2BE2 solid
+    25%
+    	border : 5px #0000FF solid
+    75% 
+    	border : 5px #DC143C solid
+    100% 
+    	border : 5px #8A2BE2 solid
+
+@keyframes titleAnimation 
+    0% 
+    	color : #8A2BE2
+    25%
+    	color : #0000FF
+    75% 
+    	color : #DC143C
+    100% 
+    	color : #8A2BE2
+
+@keyframes optionSelected 
+    0% 
+    	border : 5px #8A2BE2 solid
+    	color : #8A2BE2
+    25%
+    	border : 5px #0000FF solid
+    	color : #0000FF
+    75% 
+    	border : 5px #DC143C solid
+    	color : #DC143C
+    100% 
+    	border : 5px #8A2BE2 solid
+    	color : #8A2BE2
+
+
+@keyframes scaleBG 
+    0% 
+    	background-position: 0px 0px
+    100% 
+    	background-position: 0px -1000px
