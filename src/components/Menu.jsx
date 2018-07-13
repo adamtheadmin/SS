@@ -31,7 +31,7 @@ class Menu extends React.Component{
 		super()
 
 		//skip menu
-		state.set('inGame', true)
+		//state.set('inGame', true)
 		this.options = [
 			{
 				name : "Start Game",
@@ -39,12 +39,12 @@ class Menu extends React.Component{
 			},
 			{
 				name : "Github",
-				call : () => alert("Go To Github!")
+				call : () => window.open("https://github.com/lilglower/SS")
 			},
-			{
-				name : "Loading Screen",
-				call : () => state.set('loading', true)
-			}
+			// {
+			// 	name : "Loading Screen",
+			// 	call : () => state.set('loading', true)
+			// }
 		]
 	}
 
@@ -84,7 +84,7 @@ class Menu extends React.Component{
 			    	<h1>SS</h1>
 			    	<h2>SPACE SHOOTER</h2>
 			    	{this.renderSelection()}
-			    	<h3>(C) 2018 By Adam Fowler. All Rights Reserved</h3>
+			    	<h3>(C) Copyright 2018 By Adam Fowler. All Rights Reserved.</h3>
 			    </div>
 			  </div>
 	}

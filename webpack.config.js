@@ -56,7 +56,8 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([
-      {from : "src/images/*", to : __dirname + "/public/images/", flatten : true}
+      {from : "src/images/*", to : __dirname + "/public/images/", flatten : true},
+      {from : "src/fonts/**/*", to : __dirname + "/public/fonts/", flatten : true}
     ]),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.NamedModulesPlugin(),

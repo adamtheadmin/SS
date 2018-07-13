@@ -18,12 +18,16 @@
 			text-align : center
 			font-size : 55pt
 			line-height : 1em
+			font-family : boombox
+			animation: titleAnimation 2500ms linear infinite
 		h2
 			text-align : center
 			font-size : 10pt
+			font-family : monospace
 		h3
 			text-align : center
 			font-size : 9pt
+			font-family : monospace
 		.option
 			cursor : pointer
 			border : #D3D3D3 5px solid
@@ -33,9 +37,21 @@
 			padding : 7px 0
 			margin : 20px auto
 			font-size : 15pt
+			font-family : boombox
 			&.active
-				animation: colorBorder 2500ms linear infinite
+				animation: optionSelected 2500ms linear infinite
 
+@font-face
+    font-family: 'boombox'
+    src: url('/fonts/boombox2-webfont.woff2')
+    font-weight: normal;
+    font-style: normal;
+
+@font-face
+    font-family: 'monospace'
+    src: url('/fonts/monospace-webfont.woff2')
+    font-weight: normal;
+    font-style: normal;
 
 @keyframes colorBorder 
     0% 
@@ -47,8 +63,33 @@
     100% 
     	border : 5px #8A2BE2 solid
 
+@keyframes titleAnimation 
+    0% 
+    	color : #8A2BE2
+    25%
+    	color : #0000FF
+    75% 
+    	color : #DC143C
+    100% 
+    	color : #8A2BE2
+
+@keyframes optionSelected 
+    0% 
+    	border : 5px #8A2BE2 solid
+    	color : #8A2BE2
+    25%
+    	border : 5px #0000FF solid
+    	color : #0000FF
+    75% 
+    	border : 5px #DC143C solid
+    	color : #DC143C
+    100% 
+    	border : 5px #8A2BE2 solid
+    	color : #8A2BE2
+
+
 @keyframes scaleBG 
     0% 
-    	background-position: 0px 0px; 
+    	background-position: 0px 0px
     100% 
-    	background-position: 0px -1000px; 
+    	background-position: 0px -1000px
