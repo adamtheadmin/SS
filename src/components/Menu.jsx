@@ -84,7 +84,10 @@ class Menu extends React.Component{
 			    	<h1>SS</h1>
 			    	<h2>SPACE SHOOTER</h2>
 			    	{this.renderSelection()}
+			    	<br />
+			    	<hr />
 			    	<h3>(C) Copyright 2018 By Adam Fowler. All Rights Reserved.</h3>
+			    	<h3>Made with React + Webpack</h3>
 			    </div>
 			  </div>
 	}

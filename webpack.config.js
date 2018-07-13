@@ -26,7 +26,7 @@ module.exports = {
   output: {
     publicPath: '/',
     path: path.join(__dirname, 'public'),
-    filename: 'bundle.js'
+    filename: "bundle.[hash].js"
   },
   module: {
     rules: loadersConf
@@ -71,7 +71,7 @@ module.exports = {
       template: './src/template.html',
       files: {
         css: ['style.css'],
-        js: [ "bundle.js"],
+        js: [ "bundle.[hash].js"],
       }
     }),
   ]
