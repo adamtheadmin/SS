@@ -16,6 +16,7 @@ class Game extends React.Component{
 		this.state = state.getState()
 		state.set('windowWidth', this.state.width < 900 ? this.state.width - 20 : 900)
 		state.set('windowHeight', this.state.height - 20)
+		state.set('kills', 0)
 		state.set('screen', [])
 	}
 

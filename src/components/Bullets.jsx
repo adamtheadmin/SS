@@ -18,9 +18,9 @@ class Bullets extends React.Component{
 		})
 		state.on('destroyBullet', this.dbh = bullet => {
 			for(var x in this.bullets)
-				if(this.bullets[x] === bullet)
+				if(this.bullets[x].props.id == bullet.props.id){
 					this.bullets.splice(x, 1)
-			//this.bullets.splice(this.bullets.indexOf(bullet), 1)
+				}
 			this.forceUpdate()
 		})
 	}

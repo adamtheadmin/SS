@@ -7,25 +7,31 @@ import state from '../state'
 import eachSeries from 'async/eachSeries'
 import Promise from 'bluebird'
 
+Promise.config({
+	warnings : false
+})
+
 class Loading extends React.Component {
 	constructor(){
 		super()
 		this.elements = [
-			'/images/sky.jpg',
-			'/images/stars.jpg',
-			'/images/ship.png',
-			'/images/bullet.png',
-			'/images/bullet2.png',
-			'/images/alien.png',
-			'/images/explosion.gif'
+			'sky.jpg',
+			'stars.jpg',
+			'ship.png',
+			'bullet.png',
+			'bullet2.png',
+			'alien.png',
+			'alien-red.png',
+			'explosion.gif'
 		]
 	}
 
 	loadImage(src){
-		return new Promise(resolve => {
+		return new Promise((resolve, reject) => {
+			src = `/images/${src}`
 		    var img = new Image();
 		    img.src = src
-		    img.onload = resolve
+		    img.onload = _ => resolve()
 		})
 	}
 

@@ -21,12 +21,11 @@ class OSO extends React.Component{
 		this.children = []
 		this.timeouts = []
 		this.movement = false
+		this.active = true
+		this.class = []
 		//offload props
 		for(var x in options)
 			this[x] = options[x]
-
-		if(!this.state.screen)
-			state.set('screen', [])
 	}
 
 	randomRange(min, max){
@@ -36,13 +35,14 @@ class OSO extends React.Component{
 	}
 
 	explodeAndDestroy(){
+		this.active = false
 		if(this.movement)
 			this.movement.cancel()
-		this.explode()
+		this.explode(true)
 		setTimeout(() => this.destroy(), 200)
 	}
 
-	explode(){
+	explode(destroy){
 		if(this.exploding)
 			return;
 		this.exploding = true;
@@ -55,6 +55,9 @@ class OSO extends React.Component{
 			left : -40
 		}} />
 		this.children.push(explosion)
+		this.forceUpdate()
+		if(destroy)
+			return
 		var to = setTimeout(() => {
 			this.children.splice(this.children.indexOf(explosion), 1)
 			this.timeouts.splice(this.timeouts.indexOf(to), 1)
@@ -62,11 +65,10 @@ class OSO extends React.Component{
 			this.exploding = false
 		}, 1300)
 		this.timeouts.push(to)
-		this.forceUpdate()
 	}
 
 	isCollision(){
-		var screen = state.get('screen'),
+		var screen = this.state.screen,
 			rect1 = this
 		for(var x in screen){
 			var rect2 = screen[x]
@@ -102,15 +104,15 @@ class OSO extends React.Component{
 					if(ongoing){
 						this.x = s.x
 						this.y = s.y
+						var col = this.isCollision()
+						if(col && col.active){
+							col.hit(this)
+							this.hit(col)
+						}
 						this.forceUpdate()
 						if(s.x == x && s.y == y){
 							resolve()
 							this.movement = false
-						}
-						var col = this.isCollision()
-						if(col){
-							this.hit(col)
-							col.hit(this)
 						}
 					} else if(!sentReject){
 						reject(new Error("The tween has been canceled"))
@@ -141,10 +143,11 @@ class OSO extends React.Component{
 		this.state.screen.splice(this.state.screen.indexOf(this), 1)
 		this.deinit()
 		for(var x in this.timeouts)
-			clearTimeout(this.timeouts[x])
+			clearInterval(this.timeouts[x])
 	}
 
 	destroy(){
+		this.active = false
 		throw new Error("This element has no destroy function!!!")
 	}
 

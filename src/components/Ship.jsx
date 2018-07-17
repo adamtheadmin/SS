@@ -28,6 +28,7 @@ class Ship extends OSO{
 			{x : 75, y : 75}
 		]
 		this.gun = 0;
+		this.invincible = false
 	}
 
 	assignControls(){
@@ -81,6 +82,12 @@ class Ship extends OSO{
 	}
 
 	takeDamage(amount){
+		if(this.invincible)
+			return
+		this.invincible = true
+		this.timeouts.push(setTimeout(_ => {
+			this.invincible = false
+		}, 1500))
 		this.explode()
 		state.set('health', this.state.health - amount)
 		if(this.state.health <= 0)
@@ -88,10 +95,11 @@ class Ship extends OSO{
 	}
 
 	hit(by){
-		if(by.class.indexOf("enemy") > -1){
-			this.takeDamage(5)
-			by.explodeAndDestroy()
-		}
+		if(by.class.indexOf("friendly") > -1)
+			return
+		console.log("SHIP HIT BY " + by.class.join(" "))
+		this.takeDamage(5)
+		by.destroy()
 	}
 
 	shoot(){
@@ -107,12 +115,12 @@ class Ship extends OSO{
 	}
 
 	destroy(){
-		this.tween(this.x + 150, this.state.windowHeight + 250, 1000)
+		this.tween(this.x + 150, this.state.windowHeight + 200, 1000)
 			.then(_ => {
 				state.set('message', "GAME OVER")
 				setTimeout(() => {
-					state.toggle('inGame')
-				}, 1000 * 5)
+					state.set('inGame', false)
+				}, 1000 * 7)
 			})
 	}
 

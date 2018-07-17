@@ -12,22 +12,31 @@ class EnemyShip extends OSO{
 			height : 128,
 			x : 0,
 			y : -128,
-			image : "alien.png",
+			image : props.red || false ? "alien-red.png" : "alien.png",
 			class : ['enemy', 'ship']
 		})
+		this.red = props.red || false
 		this.props = props
-		this.hp = 1;
+		this.hp = props.hp || 1;
 		this.x = this.randomRange(0, state.get('windowWidth') - this.width)
-		//setTimeout(() => this.explode(), 3000)
+		if(this.red)
+			this.timeouts.push(setInterval(_ => {
+				this.shoot()
+			}, 2500))
+	}
+
+	shoot(){
+		state.emit('sendBullet', {
+			up : false,
+			x : this.x + Math.floor(this.width / 2),
+			y : this.y + this.height
+		})
 	}
 
 	hit(by){
-		if(by.class.indexOf("friendly") > -1 && by.class.indexOf("bullet") > -1){
-			this.hp--
-			if(!this.hp){
-				this.explodeAndDestroy()
-				state.increment('kills')
-			}
+		if(by.class.indexOf("friendly") > -1){
+			this.explodeAndDestroy()
+			state.increment('kills')
 		}
 	}
 

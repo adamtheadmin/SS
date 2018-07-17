@@ -10,14 +10,24 @@ class HUD extends React.Component {
 	constructor(){
 		super()
 		this.state = state.getState()
+		this.messageInterval = false
 		state.set('message', false)
 		state.on('stateChange', this.listener = state => {
 			this.forceUpdate()
+		})
+		state.on('message', this.mlistener = state => {
+			this.messageInterval = setTimeout(_ => {
+				this.state.message = false
+				this.forceUpdate()
+			}, 2000)
 		})
 	}
 
 	componentWillUnmount(){
 		state.off('stateChange', this.listener)
+		state.off('message', this.mlistener)
+		if(this.messageInterval)
+			clearTimeout(this.messageInterval)
 	}
 
 	getInformation(){
