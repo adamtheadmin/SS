@@ -21,20 +21,14 @@ class Bullet extends OSO{
 		this.y = this.props.y
 	}
 
-	hit(by){
-		if(by.class.indexOf("enemy") > -1){
-			this.destroy()
-		}
-	}
-
 	explodeAndDestroy(){
 		this.destroy()
 	}
 
-	// explode(){
-	// 	//Bullets do not explode
-	// 	this.destroy()
-	// }
+	explode(){
+		//Bullets do not explode
+		this.destroy()
+	}
 
 	destroy(){
 		this.active = false
