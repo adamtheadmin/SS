@@ -40,12 +40,14 @@ class Menu extends React.Component{
 			{
 				name : "Github",
 				call : () => window.open("https://github.com/lilglower/SS")
-			},
-			// {
-			// 	name : "Loading Screen",
-			// 	call : () => state.set('loading', true)
-			// }
+			}
 		]
+
+		if(window.parent)
+			this.options.push({
+				name : "Fullscreen",
+				call : () => window.open("https://ss.adamfowler.net")
+			})
 	}
 
 	renderSelection(){
