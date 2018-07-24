@@ -86,6 +86,8 @@ class OSO extends React.Component{
 
 	hit(){}
 
+	animationStep(){}
+
 	tween(x, y, duration){
 		var ongoing = true,
 			sentReject = false,
@@ -102,6 +104,12 @@ class OSO extends React.Component{
 				duration : duration || 1000,
 				step : (s => {
 					if(ongoing){
+						try{
+							this.animationStep(s)
+						} catch(e){
+							reject(new Error(`There was an error inside the animationStep function: ${e.toString()}`))
+							sentReject = true
+						}
 						this.x = s.x
 						this.y = s.y
 						var col = this.isCollision()

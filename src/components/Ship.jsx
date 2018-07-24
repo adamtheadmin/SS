@@ -31,6 +31,10 @@ class Ship extends OSO{
 		this.invincible = false
 	}
 
+	animationStep(s){
+		state.set('shipLocation', s)
+	}
+
 	assignControls(){
 		var body = document.querySelector('body')
 		body.onkeydown = e => {

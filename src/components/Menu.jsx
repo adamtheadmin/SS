@@ -43,7 +43,7 @@ class Menu extends React.Component{
 			}
 		]
 
-		if(window.parent)
+		if(window != window.top)
 			this.options.push({
 				name : "Fullscreen",
 				call : () => window.open("https://ss.adamfowler.net")
