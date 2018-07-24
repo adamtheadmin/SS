@@ -1,12 +1,15 @@
 ## SS: Space Shooter
 A React.js Video Game Written by Adam Fowler
 
+Demo: https://ss.adamfowler.net
+
 This Project uses the following technologies:
 - React
 - Webpack
 - SASS
 
-This is a WIP, and uses assests from the web that may not be my property.
+This is a WIP, and uses assests from the web that may not be my property. 
+I made this project to prove that I understand react, and state management techniques.
 
 #### Licence
 Copyright (c) 2018 Adam Fowler
