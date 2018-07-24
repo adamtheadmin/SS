@@ -34,6 +34,8 @@ class Ship extends OSO{
 	assignControls(){
 		var body = document.querySelector('body')
 		body.onkeydown = e => {
+			if(!this.ready)
+				return false
 			switch(e.which){
 				case 32: //Spacebar
 					this.shoot()
@@ -50,6 +52,8 @@ class Ship extends OSO{
 		}
 
 		body.onkeyup = e => {
+			if(!this.ready)
+				return false
 			switch(e.which){
 				case 32: //Spacebar
 					this.shoot()
@@ -124,12 +128,24 @@ class Ship extends OSO{
 			})
 	}
 
-	init(){
-		this.tween(this.x, this.state.windowHeight - 120, 1000)
+	recenter(){
+		this.ready = false
+		return this.tween(this.x, this.state.windowHeight - 120, 1000)
 		.then(_ => {
 			this.ready = true;
 			this.assignControls()
 		})
+	}
+
+	init(){
+		state.on('resize', this.resizeOff = s => {
+			this.recenter()
+		})
+		this.recenter()
+	}
+
+	deinit(){
+		state.off('resize', this.resizeOff)
 	}
 }
 

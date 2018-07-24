@@ -47,6 +47,9 @@ module.exports = {
         screw_ie8: true,
         drop_console: true,
         drop_debugger: true
+      },
+      output: {
+        comments: false
       }
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),

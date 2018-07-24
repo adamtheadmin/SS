@@ -13,6 +13,12 @@ class state {
 			width: window.innerWidth || document.body.clientWidth,
 			height: window.innerHeight || document.body.clientHeight
 		}
+
+		window.addEventListener("resize", function () {
+		    this.set('width', window.innerWidth || document.body.clientWidth)
+		    this.set('height', window.innerHeight || document.body.clientHeight)
+		    this.set('resize', true)
+		}.bind(this));
 	}
 
 	get(key){

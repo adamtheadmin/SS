@@ -38,6 +38,15 @@ class Game extends React.Component{
 				break;
 			}
 		}
+		state.on('resize', this.resizeOff = s => {
+			state.set('windowWidth', this.state.width < 900 ? this.state.width - 20 : 900)
+			state.set('windowHeight', this.state.height - 20)
+			this.forceUpdate()
+		})
+	}
+
+	componentWillUnmount(){
+		state.off('resize', this.resizeOff)
 	}
 
 	render(){
