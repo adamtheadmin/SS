@@ -39,7 +39,7 @@ class Menu extends React.Component{
 			},
 			{
 				name : "Github",
-				call : () => window.open("https://github.com/lilglower/SS")
+				call : () => window.open("https://github.com/adamtheadmin/SS")
 			}
 		]
 
