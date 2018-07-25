@@ -12,7 +12,7 @@ class Bullets extends React.Component{
 		this.tracker = 0;
 		this.state = state.getState()
 		state.on('sendBullet', this.sbh = details => {
-			this.bullets.push(<Bullet key={this.tracker} id={this.tracker} up={details.up} x={details.x} y={details.y} />)
+			this.bullets.push(<Bullet key={this.tracker} id={this.tracker} up={details.up} x={details.x} y={details.y} duration={details.duration || 1000} />)
 			this.tracker++
 			this.forceUpdate()
 		})

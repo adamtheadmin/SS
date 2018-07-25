@@ -4,6 +4,7 @@
 import React from 'react'
 import state from '../state'
 import EnemyShip from './EnemyShip'
+import Mothership from './Mothership'
 import Promise from 'bluebird'
 
 class Waves extends React.Component{
@@ -102,6 +103,56 @@ class Waves extends React.Component{
 
 
 				this.stopSpawn(1000 * 40)
+
+				this.waitForWave()
+					.then(_ => this.startWave())
+			break;
+
+			case 4:
+				var c = 1;
+				this.intervals.push(this.waveInterval = setInterval(_ => {
+					this.spawning = true;
+					switch(c){
+						case 1:
+							this.enemies.push(<Mothership key={this.eCounter} id={this.eCounter} hp={50} />)
+						break;
+
+						case 2:
+							this.enemies.push(<EnemyShip key={this.eCounter} id={this.eCounter} hp={1} red={true} />)
+						break;
+
+						case 3:
+							this.enemies.push(<EnemyShip key={this.eCounter} id={this.eCounter} hp={1} red={false} />)
+						break;
+
+						case 4:
+							this.enemies.push(<EnemyShip key={this.eCounter} id={this.eCounter} hp={1} red={true} />)
+						break;
+
+						default:
+							c = 0;
+						break;
+					}
+					this.eCounter++
+					c++
+					this.forceUpdate()
+				}, 1500))
+
+				this.stopSpawn(1000 * 40)
+
+				this.waitForWave()
+					.then(_ => this.startWave())
+			break;
+
+			case 5:
+				this.intervals.push(this.waveInterval = setInterval(_ => {
+					this.spawning = true;
+					this.enemies.push(<Mothership key={this.eCounter} id={this.eCounter} hp={50} />)
+					this.eCounter++
+					this.forceUpdate()
+				}, 1000 * 5))
+
+				this.stopSpawn(1000 * 60 * 2)
 
 				this.waitForWave()
 					.then(_ => this.startWave())

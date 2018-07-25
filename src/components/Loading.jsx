@@ -22,7 +22,8 @@ class Loading extends React.Component {
 			'bullet2.png',
 			'alien.png',
 			'alien-red.png',
-			'explosion.gif'
+			'explosion.gif',
+			'mothership.gif'
 		]
 	}
 

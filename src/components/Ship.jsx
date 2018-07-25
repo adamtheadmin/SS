@@ -97,7 +97,10 @@ class Ship extends OSO{
 			this.invincible = false
 		}, 1500))
 		this.explode()
-		state.set('health', this.state.health - amount)
+		var newHealth = this.state.health - amount;
+		if(newHealth <= 0)
+			newHealth = 0
+		state.set('health', newHealth)
 		if(this.state.health <= 0)
 			this.explodeAndDestroy()
 	}
@@ -105,6 +108,9 @@ class Ship extends OSO{
 	hit(by){
 		if(by.class.indexOf("friendly") > -1)
 			return
+		if(by.class.indexOf("mothership") > -1){
+			this.takeDamage(100)
+		}
 		console.log("SHIP HIT BY " + by.class.join(" "))
 		this.takeDamage(5)
 		by.destroy()

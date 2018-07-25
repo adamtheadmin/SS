@@ -36,7 +36,7 @@ class Bullet extends OSO{
 	}
 
 	init(){
-		this.tween(this.x, this.props.up ? -100 : state.get('windowHeight') + 100, 1000)
+		this.tween(this.x, this.props.up ? -100 : state.get('windowHeight') + 100, this.props.duration || 1000)
 			.then(_ => this.destroy())
 			.catch(_ => this.destroy())
 	}
